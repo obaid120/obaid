@@ -38,6 +38,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
+import { ForgetComponent } from './forget/forget.component';
 
 
 
@@ -46,7 +47,8 @@ import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ForgetComponent
   ],
   imports: [
     BrowserModule,

@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 
   // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   loginForm! : FormGroup
-
-  constructor(private formBuilder : FormBuilder) { }
+  hide = true;
+  constructor(private formBuilder : FormBuilder, private router : Router) { }
 
   
   
@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
-
+  onForget(){
+    this.router.navigate(['forgetPassword']);
+  }
   
 }
