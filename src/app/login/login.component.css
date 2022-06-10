@@ -1,0 +1,29 @@
+.card{
+    
+    border: none;
+    width: 400px;
+    padding: 40px;
+    position:absolute;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%,5%);
+    background: rgb(187, 188, 189);
+    background: linear-gradient(90deg,rgb(128, 130, 131) 0% ,rgb(135, 134, 136) 100%);
+}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+
+
+
+
+
+
+
