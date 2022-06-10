@@ -13,12 +13,14 @@
                         
 
                     </mat-form-field>
-                    <span class="text-danger" *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" >*Email is require </span>
+                    <span class="text-danger" *ngIf="loginForm.controls['email'].touched && loginForm.hasError('required','email')" >*Email is require </span>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Password..</mat-label>
                         <input  type="password" formControlName="password" matInput placeholder="Ex. Password">
                         
                     </mat-form-field>
+                    <span class="text-danger" *ngIf="loginForm.controls['password'].touched && loginForm.hasError('required','password')">*Password Required</span>
+                    <br>
                     <button mat-raised-button color="primary">Login</button>
                     <br>
                     <br>
