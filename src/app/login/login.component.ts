@@ -16,20 +16,20 @@ import {HttpClient} from '@angular/common/http'
 })
 export class LoginComponent implements OnInit {
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  loginForm! : FormGroup
 
-
-  constructor() { }
+  constructor(private formBuilder : FormBuilder) { }
 
   
   
    
 
   ngOnInit(): void {
-    // this.loginForm = this.formBuilder.group({
-    //   email : ['',Validators.required],
-    //   password : ['',Validators.required]
-    // })
+    this.loginForm = this.formBuilder.group({
+      email : ['',Validators.compose([Validators.required,Validators.email])],
+      password : ['',Validators.required]
+    })
   }
 
 
