@@ -1,33 +1,43 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="text-center">
-                    <h1>Login</h1>
-                    <h6>Please Enter Email & Password</h6>
-                </div>
-                <form class="example-form" [formGroup]="loginForm">
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Email</mat-label>
-                        <input type="email" formControlName="email" matInput placeholder="Ex. pat@example.com">
-                        
+<div class="body">
 
-                    </mat-form-field>
-                    <span class="text-danger" *ngIf="loginForm.controls['email'].touched && loginForm.hasError('required','email')" >*Email is require </span>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Password..</mat-label>
-                        <input  type="password" formControlName="password" matInput placeholder="Ex. Password" [type]="hide ? 'password' : 'text'">
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                          </button>
-                    </mat-form-field>
-                    <span class="text-danger" *ngIf="loginForm.controls['password'].touched && loginForm.hasError('required','password')">*Password Required</span>
-                    <br>
-                    <button mat-raised-button color="primary">Login</button>
-                    <br>
-                    <br>
-                    <a  style="cursor: pointer;" (click)="onForget()">Forget Password</a>
-                </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="text-center">
+                        <h1>Login</h1>
+                        <h6>Please Enter Email & Password</h6>
+                    </div>
+                    <form class="example-form" [formGroup]="loginForm">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input type="email" formControlName="email" matInput placeholder="Ex. pat@example.com">
+                            <mat-icon matSuffix> email</mat-icon>
+
+                        </mat-form-field>
+                        <span class="text-danger"
+                            *ngIf="loginForm.controls['email'].touched && loginForm.hasError('required','email')">*Email
+                            is require </span>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Password..</mat-label>
+                            <input type="password" formControlName="password" matInput placeholder="Ex. Password"
+                                [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <span class="text-danger"
+                            *ngIf="loginForm.controls['password'].touched && loginForm.hasError('required','password')">*Password
+                            Required</span>
+                        <br>
+                        <button mat-raised-button color="primary">Login</button>
+                        <br>
+                        <br>
+                        <a style="cursor: pointer;" (click)="onForget()">Forget Password</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

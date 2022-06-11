@@ -1,4 +1,8 @@
 
+.body{
+  min-height: 100%;
+  background: rgba(110, 104, 104, 0.979);
+}
 .card{
     
     border: none;
