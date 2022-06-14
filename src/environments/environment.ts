@@ -3,8 +3,35 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+
+   logoName : "ATK",
+   configurationProfile : "",
+   baseHref : "atk-dev",
+   production : true,
+   showLog : true,
+   dynamicSideNav : true,
+   permissionHandling : true,
+   fontPack : "",
+
+   authBaseUrl : "",
+   authRevokeUrl : "",
+   apiBaseUrl : "http://localhost:5001/api/",
+   hubConnection : "http://localhost:5001/",
+
+   device : "web",
+   grant_type : "password",
+   client_id : "ro.web.client",
+   client_secret : "secret"
 };
+
+// export const environment = {
+//   production: true
+// };
+
+
+
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

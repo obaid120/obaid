@@ -1,6 +1,4 @@
 <div class="body">
-
-
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -10,9 +8,11 @@
                         <h6>Please Enter Email & Password</h6>
                     </div>
                     <form class="example-form" [formGroup]="loginForm">
+                        <mat-progress-bar *ngIf='isSubmitted' color="#000000" mode="indeterminate"></mat-progress-bar>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Email</mat-label>
-                            <input type="email" formControlName="email" matInput placeholder="Ex. pat@example.com">
+                            <input type="email" formControlName="email" matInput placeholder="Ex. pat@example.com"
+                            [(ngModel)]="userEmail">
                             <mat-icon matSuffix> email</mat-icon>
 
                         </mat-form-field>
@@ -22,7 +22,8 @@
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Password..</mat-label>
                             <input type="password" formControlName="password" matInput placeholder="Ex. Password"
-                                [type]="hide ? 'password' : 'text'">
+                                [type]="hide ? 'password' : 'text'"
+                                [(ngModel)]="userPassword">
                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                                 [attr.aria-pressed]="hide">
                                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -32,11 +33,12 @@
                             *ngIf="loginForm.controls['password'].touched && loginForm.hasError('required','password')">*Password
                             Required</span>
                         <br>
-                        <button mat-raised-button color="primary">Login</button>
+                        <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
                         <br>
                         <br>
                         <a style="cursor: pointer;" (click)="onForget()">Forget Password</a>
                     </form>
+                    
                 </div>
             </div>
         </div>

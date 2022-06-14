@@ -1,1 +1,50 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenav mode="side" opened="isExpanded">
+        <mat-nav-list>
+            <mat-list-item (click)="isExpanded = !isExpanded">
+                <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right
+                </mat-icon>
+            </mat-list-item>
+
+            <mat-list-item [routerLink]="'dashboard'">
+                <mat-icon mat-list-icon>home</mat-icon>
+                <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
+            </mat-list-item>
+
+            <mat-list-item [routerLink]="'info'">
+                <mat-icon mat-list-icon>important_devices</mat-icon>
+                <span *ngIf="isExpanded" class="menu-item">Info</span>
+            </mat-list-item>
+
+            <mat-list-item [routerLink]="'user'">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <span *ngIf="isExpanded" class="menu-item">User</span>
+            </mat-list-item>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="ofn">
+        <div>
+            <mat-toolbar *ngIf="isLoggedIn" class="header">
+                <div style="position: absolute;">
+                    <h4>Chevron</h4>
+                </div>
+                <div style="position: absolute; right: 20px;">
+                    <button mat-button (click)="onLogout()">Logout</button>
+                </div>
+            </mat-toolbar>
+        </div>
+
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+
+        <div *ngIf="isLoggedIn">
+            <mat-toolbar class="footer">
+                <p>INIT - 2020</p>
+            </mat-toolbar>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<router-outlet *ngIf="!this.isLoggedIn"></router-outlet>
+<page-loader></page-loader>

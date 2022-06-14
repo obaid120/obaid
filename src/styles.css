@@ -6,3 +6,48 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background: rgb(255, 254, 254);
 }
+.full-width {
+    width: 100%;
+}
+
+.two-row-card {
+    float: left;
+    width: 100%; padding: 0px -10px 10px 0px;
+}
+
+
+.tr-sec-box {
+    display: flex;
+}
+
+.page-cs-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(229, 239, 242, 0.95);
+    z-index: 20;
+}
+
+.page-cs-loader img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+}
+
+.page-cs-loader mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+}
+
+.ofn {
+    overflow: hidden !important;
+}
+
+.align-right {
+    text-align: right;
+}

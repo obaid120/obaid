@@ -1,0 +1,52 @@
+.full-width {
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+.custom-button {
+    margin: 10px 10px 10px 10px;
+    width: auto;
+    height: 40px;
+    align-self: center;
+}
+
+.header-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bold {
+    right: 700px;
+    position: absolute;
+    font-weight: bold;
+}
+
+.medium {
+    font-size: 15px;
+}
+
+.row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.custom-row {
+    display: flex;
+}
+
+.custom-heading {
+    margin: 30px 10px 10px 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.col-md-2 {
+    margin: 0px -70px 0px 0px;
+}
+
+.title-text {
+    font-size: 30px;
+    font-weight: bold;
+    align-self: center;
+}

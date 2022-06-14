@@ -39,6 +39,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 import { ForgetComponent } from './forget/forget.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './core/shared/shared.module';
+import { MaterialModule } from './material/material.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -48,7 +53,9 @@ import { ForgetComponent } from './forget/forget.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    ForgetComponent
+    ForgetComponent,
+    SearchFormComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -69,8 +76,10 @@ import { ForgetComponent } from './forget/forget.component';
     MatCardModule,
     MatSelectModule,
     MatButtonModule,
-    MatButtonToggleModule
-    
+    MatButtonToggleModule,
+    CoreModule,
+    SharedModule,
+    MaterialModule
 
   ],
   providers: [],
