@@ -4,8 +4,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="text-center">
-                        <h1>Login</h1>
-                        <h6>Please Enter Email & Password</h6>
+                        <h1 style="font-weight:bold ;">Login</h1>
+                        <h5 style="font-family:courier">Please Enter Email & Password</h5>
                     </div>
                     <form class="example-form" [formGroup]="loginForm">
                         <mat-progress-bar *ngIf='isSubmitted' color="#000000" mode="indeterminate"></mat-progress-bar>
@@ -36,7 +36,7 @@
                         <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
                         <br>
                         <br>
-                        <a style="cursor: pointer;" (click)="onForget()">Forget Password</a>
+                        <a style="cursor: pointer;" (click)="onForget()">Forget Password?</a>
                     </form>
                     
                 </div>
