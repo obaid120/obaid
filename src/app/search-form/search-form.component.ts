@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { NavigationEnd, Router } from '@angular/router';
 import { ChevronSerial, CodeType } from '../core/models/atk.model';
@@ -51,13 +51,14 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
     private _logService: LogService,
     private _mappingService: MappingService,
     private _authService: AuthService,
-    private router: Router
+    private router: Router,
+    private rendered: Renderer2
   ) {
 
   }
   ngAfterViewInit(): void {
+  
   }
-
   ngOnInit(): void {
     let token = localStorage.getItem('token_id');
     console.log("this.firstTime");

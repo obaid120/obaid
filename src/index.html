@@ -11,9 +11,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  <script src="./assets/custom.js"></script>
 </head>
 
 <body class="mat-typography">
@@ -23,7 +24,38 @@
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"></script>
 
+
   <style>
+    @-webkit-keyframes spin {
+      0% {
+        transform: rotate(0)
+      }
+
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+
+    @-moz-keyframes spin {
+      0% {
+        -moz-transform: rotate(0)
+      }
+
+      100% {
+        -moz-transform: rotate(360deg)
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0)
+      }
+
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+
     .spinner {
       position: fixed;
       top: 0;
@@ -31,7 +63,7 @@
       width: 100%;
       height: 100vh;
       z-index: 1003;
-      background: #000000;
+      background: #000;
       overflow: hidden
     }
 
@@ -44,7 +76,7 @@
       height: 150px;
       margin: -75px 0 0 -75px;
       border-radius: 50%;
-      box-shadow: 0 3px 3px 0 #ffb600;
+      box-shadow: 0 3px 3px 0 #e30424;
       transform: translate3d(0, 0, 0);
       animation: spin 2s linear infinite
     }
@@ -61,7 +93,7 @@
       left: 5px;
       right: 5px;
       bottom: 5px;
-      box-shadow: 0 3px 3px 0 #ffffff;
+      box-shadow: 0 3px 3px 0 #e5e4e4;
       -webkit-animation: spin 3s linear infinite;
       animation: spin 3s linear infinite
     }
@@ -71,10 +103,52 @@
       left: 15px;
       right: 15px;
       bottom: 15px;
-      box-shadow: 0 3px 3px 0 #ffb600;
+      box-shadow: 0 3px 3px 0 #004c5f;
       animation: spin 1.5s linear infinite
     }
+
+    .loader-icon img {
+      height: 72px;
+    }
+
+    .loader-icon {
+      /* position: fixed;
+        left: 0.8%;
+        top: 48.3%;
+        text-align: center;
+        margin: -100px 0 0 -24px;
+        animation: sk-rotateplane 1.2s infinite ease-in-out; */
+
+      display: block;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      width: 150px;
+      /* height: 70px; */
+      margin: -110px 85px 74px -75px;
+      border-radius: 50%;
+      text-align: center;
+      animation: sk-rotateplane 1.2s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    @keyframes sk-rotateplane {
+      0% {
+        transform: rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateZ(360deg);
+      }
+    }
   </style>
+  <div id="globalspinner">
+    <div class="spinner">
+      <div id="child1" class="blob blob-0"></div>
+      <div class="loader-icon" *ngIf="true">
+        <img src="assets/logo.png" alt="Loading">
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

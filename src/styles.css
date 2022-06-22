@@ -1,18 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html,
+body {
+    height: 100%;
+}
+
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background: rgb(255, 254, 254);
 }
+
 .full-width {
     width: 100%;
 }
 
 .two-row-card {
     float: left;
-    width: 100%; padding: 0px -10px 10px 0px;
+    width: 100%;
+    padding: 0px -10px 10px 0px;
 }
 
 
@@ -44,10 +50,53 @@ body {
     margin: -50px 0 0 -50px;
 }
 
-.ofn {
+.ofn-login {
     overflow: hidden !important;
+    overflow-y: hidden !important;
+    /* overflow-x: auto !important; */
+    /* margin-left: 64px !important; */
+    min-height: 750px;
+    background: rgba(110, 104, 104, 0.979);
+}
+
+.ofn-logout {
+    overflow: hidden !important;
+    overflow-y: hidden !important;
+    /* overflow-x: auto !important; */
+    margin-left: 64px !important;
+    min-height: 750px;
+    background: white;
+}
+
+.white {
+    color: white !important;
 }
 
 .align-right {
+    flex: 1;
     text-align: right;
+}
+
+.dni {
+    display: none !important;
+}
+
+.snc {
+    position: fixed !important;
+    top: 64px !important;
+    background-color: #004c5f !important;
+}
+
+.mat-sidenav-fixed {
+    width: 280px !important;
+}
+
+.item-underline {
+    border-bottom: 1px solid;
+}
+
+.mat-list-single-selected-option {
+    background: linear-gradient(to right, red 0%, red 2%, white 2%, white 100%) !important;
+    color: #004c5f !important;
+    height: 50px !important;
 }

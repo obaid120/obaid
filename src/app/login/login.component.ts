@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../core/services/user/user.service';
 import { User, UserNavigation, UserPermission, UserRole } from '../core/models/user.model';
@@ -15,6 +15,7 @@ import { Permission } from '../core/models/permission.model';
 import { UtilityService } from '../core/services/utility/utility.service';
 import { ConfigurationService } from '../core/services/configuration/configuration.service';
 import { ConfigurationParameter } from '../core/models/configuration.model';
+import { LoginStateService } from '../core/services/login-state/login-state.service';
 
 
 
@@ -44,8 +45,9 @@ export class LoginComponent implements OnInit {
     private _mappingService: MappingService,
     private _utilityService: UtilityService,
     private _configurationService: ConfigurationService,
-    private _router: Router
-    ) { }
+    private _router: Router,
+    private loginState: LoginStateService
+  ) { }
 
 
 
@@ -95,6 +97,8 @@ export class LoginComponent implements OnInit {
         this.user.password = this.userPassword;
         // const res: any = await this._authService.login(this.user, token);
         const res: any = await this._authService.login1(this.user);
+        this._logService.logMessage("res")
+        this._logService.logMessage(res)
 
         let tokenData = res && res.data ? res.data.token || null : null;
         let userData = res && res.data ? res.data.user || null : null;
@@ -137,12 +141,18 @@ export class LoginComponent implements OnInit {
 
           this.refreshConfiguration();
           // this.isSubmitted = false;
-          location.reload();
-
-
+          this._logService.logMessage("Search")
+          // this._uiService.hideSpinner();
+          // window.location.reload();
+          setTimeout(() => {
+            this.loginState.subject.next(true);
+            this.router.navigate(['dashboard']);
+            this._uiService.hideSpinner();
+          }, 200);
 
         } catch (error) {
           this.isSubmitted = false;
+          this._uiService.hideSpinner();
 
           this._logService.logMessage('get role permission api err: ');
           this._logService.logError(error);
@@ -157,6 +167,7 @@ export class LoginComponent implements OnInit {
 
       } catch (error) {
         // this.reset.nativeElement.click();
+        this._uiService.hideSpinner();
         this.isSubmitted = false;
         this._logService.logMessage('connect token api err: ');
         this._logService.logError(error);

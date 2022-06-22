@@ -43,7 +43,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './core/shared/shared.module';
 import { MaterialModule } from './material/material.module';
-import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -55,7 +55,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     ForgetComponent,
     SearchFormComponent,
-    NavbarComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

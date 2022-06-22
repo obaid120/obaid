@@ -43,3 +43,35 @@ export class CodeType {
     id: number;
     value: string;
 }
+
+export class DashboardSummary {
+    id: number;
+    scannedOn: string;
+    scanMethod: string;
+    scanData: string;
+    scanResult: string;
+    mobileNo: string;
+    addInfo: string;
+    serialNo: string;
+    smsCode: string;
+    qrCode: string;
+    printDate: string;
+    deliverDate: string;
+    applyDate: string;
+    scanDate: string;
+    productId: number;
+    batchId: string;
+    lineId: string;
+    productName: string;
+
+    scanLocation: string;
+    scanLoc: string;
+}
+
+export class SummaryParams {
+    scanResult: string;
+    startDate: string;
+    endDate: string;
+    batchId: string;
+    recordNo: string;
+}

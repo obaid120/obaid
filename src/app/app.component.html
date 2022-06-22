@@ -1,50 +1,58 @@
-<mat-sidenav-container autosize>
-    <mat-sidenav #sidenav mode="side" opened="isExpanded">
-        <mat-nav-list>
-            <mat-list-item (click)="isExpanded = !isExpanded">
+<div *ngIf="isLoggedIn">
+    <mat-toolbar class="header">
+        <button mat-icon-button class="white" (click)="toggleNav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <img class="img-style" src="../assets/Caltex_brand_logo.svg.png">
+        <button mat-icon-button class="icon white" (click)="onLogout()">
+            <mat-icon>power_settings_new</mat-icon>
+        </button>
+    </mat-toolbar>
+</div>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav *ngIf="isLoggedIn" class="snc" #snav [mode]="isNavOpen ? 'over' : 'side'" opened="isNavOpen"
+        [fixedInViewport]="isNavOpen" fixedTopGap="64">
+        <mat-selection-list  [multiple]="false">
+            <!-- <mat-list-item (click)="isExpanded = !isExpanded">
                 <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right
                 </mat-icon>
-            </mat-list-item>
+            </mat-list-item> -->
 
-            <mat-list-item [routerLink]="'dashboard'">
+            <mat-list-option #option
+            (click)="openDashboard()" 
+            class="white item-underline"
+            [selected]="router.url == '/dashboard' ? true : false"
+            >
                 <mat-icon mat-list-icon>home</mat-icon>
-                <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
-            </mat-list-item>
+                <span *ngIf="isNavOpen" class="menu-item">Dashboard</span>
+            </mat-list-option>
 
-            <mat-list-item [routerLink]="'info'">
-                <mat-icon mat-list-icon>important_devices</mat-icon>
-                <span *ngIf="isExpanded" class="menu-item">Info</span>
-            </mat-list-item>
+            <mat-list-option (click)="openSearch()" class="white"
+            [selected]="router.url == '/search' ? true : false">
+                <mat-icon mat-list-icon>search</mat-icon>
+                <span *ngIf="isNavOpen" class="menu-item">Search</span>
+            </mat-list-option>
 
-            <mat-list-item [routerLink]="'user'">
+            <mat-list-option [routerLink]="'user'" class="white">
                 <mat-icon mat-list-icon>supervisor_account</mat-icon>
-                <span *ngIf="isExpanded" class="menu-item">User</span>
-            </mat-list-item>
+                <span *ngIf="isNavOpen" class="menu-item">User</span>
+            </mat-list-option>
 
-        </mat-nav-list>
+        </mat-selection-list>
     </mat-sidenav>
-    <mat-sidenav-content class="ofn">
-        <div>
-            <mat-toolbar *ngIf="isLoggedIn" class="header">
-                <div style="position: absolute;">
-                    <h4>Chevron</h4>
-                </div>
-                <div style="position: absolute; right: 20px;">
-                    <button mat-button (click)="onLogout()">Logout</button>
-                </div>
-            </mat-toolbar>
-        </div>
 
+    <mat-sidenav-content [ngClass]="isLoggedIn ? 'ofn-logout' : 'ofn-login'">
         <div>
             <router-outlet></router-outlet>
         </div>
-
-        <div *ngIf="isLoggedIn">
-            <mat-toolbar class="footer">
-                <p>INIT - 2020</p>
-            </mat-toolbar>
-        </div>
     </mat-sidenav-content>
+
 </mat-sidenav-container>
-<router-outlet *ngIf="!this.isLoggedIn"></router-outlet>
+
+<!-- <div *ngIf="false">
+    <mat-toolbar class="footer">
+        <p class="align-right">INIT - 2020</p>
+    </mat-toolbar>
+</div> -->
 <page-loader></page-loader>

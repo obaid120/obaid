@@ -1,0 +1,171 @@
+.mat-card-custom {
+  border-radius: 0px;
+} 
+
+.card-custom {
+  width: 300px;
+  height: 160px;
+  margin: 20px 20px 20px 20px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  transition: 0.3s;
+  border-radius: 15px;
+  box-shadow: 0px 0px 3px 0px black !important;
+}
+
+.card-custom:hover {
+  transform: translate(0, -3px);
+}
+
+.red {
+  background-color: rgb(255, 255, 255);
+  color: #e20025;
+  font-family: 'Poppins';
+}
+
+.red:hover {
+  background-color: #e20025;
+  color: rgb(255, 255, 255);
+  font-family: 'Poppins';
+}
+
+.green {
+  background-color: #00cc66;
+  border: 2px solid #00994d;
+}
+
+.yellow {
+  background-color: royalblue;
+  border: 2px solid #2251dd;
+}
+
+.gray {
+  background-color: rgb(255, 255, 255);
+  color: #5d5d5d;
+  font-family: 'Poppins';
+}
+
+.gray:hover {
+  background-color: #004c5f;
+  color: rgb(255, 255, 255);
+  font-family: 'Poppins';
+}
+
+.custom-font {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 30px 0px !important;
+}
+
+.big-font {
+  font-size: 55px;
+  font-family: 'Poppins';
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.margin {
+  margin-top: 100px !important;
+}
+
+.center {
+  margin: 0 auto;
+  /* position: absolute; */
+  /* top: 50%; */
+}
+
+.counter::after {
+  font-size: 55px;
+  font-family: 'Poppins';
+  margin-bottom: 30px;
+  font-weight: 600;
+  content: counter(count);
+  animation: counter 1s linear infinite;
+  counter-reset: count 0;
+}
+
+@keyframes counter {
+  0% {
+    counter-increment: count 0;
+  }
+
+  10% {
+    counter-increment: count 1;
+  }
+
+  20% {
+    counter-increment: count 2;
+  }
+
+  30% {
+    counter-increment: count 3;
+  }
+
+  40% {
+    counter-increment: count 4;
+  }
+
+  50% {
+    counter-increment: count 5;
+  }
+
+  60% {
+    counter-increment: count 6;
+  }
+
+  70% {
+    counter-increment: count 7;
+  }
+
+  80% {
+    counter-increment: count 8;
+  }
+
+  90% {
+    counter-increment: count 9;
+  }
+
+  100% {
+    counter-increment: count 10;
+  }
+}
+
+
+/* // Table Styling below */
+
+table {
+  width: 100%;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+}
+
+.mat-table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  display: table;
+  border-collapse: collapse;
+  /* margin: 0px; */
+  overflow: auto;
+}
+
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
+
+.mat-cell,
+.mat-header-cell {
+  font-size: 16px;
+  word-wrap: initial;
+  display: table-cell;
+  padding: 0px 5px;
+  line-break: unset;
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}

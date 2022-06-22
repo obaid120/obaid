@@ -15,6 +15,8 @@ import { ConfigurationService } from './services/configuration/configuration.ser
 import { InterceptorService } from './services/base/interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpCancelService } from './services/base/httpCancel.service';
+import { AuthGuard } from './guards/auth.guard';
+import { MainGuard } from './guards/main.guard';
 
 
 
@@ -42,6 +44,8 @@ import { HttpCancelService } from './services/base/httpCancel.service';
         DatePipe,
         MappingService,
         UserService,
+        AuthGuard,
+        MainGuard,
         ConfigurationService,
         {
             provide: HTTP_INTERCEPTORS,

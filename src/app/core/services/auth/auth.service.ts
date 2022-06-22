@@ -459,13 +459,9 @@ export class AuthService {
     localStorage.clear();
     this.loginStatusChanged.next(null);
     this.configurationProfileChanged.next(null);
-    // this.loginUserStatusChanged.next(null);
-    // this.loginUserRoleStatusChanged.next(null);
-    // this.loginUserPermissionStatusChanged.next(null);
     this._router.navigate(['/']);
-    setTimeout(() => {
-      location.reload();
-        }, 100);
+
+      // location.reload();
     // window.location.reload();
     // this.loginStatusChangedNew.next("Abc");
   }

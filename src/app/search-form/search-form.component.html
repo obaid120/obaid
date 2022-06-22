@@ -31,7 +31,7 @@
                             [disabled]="this.keyword && this.codeType ? false : true" (click)="search()">
                             Search
                         </button>
-                        <button mat-raised-button class="custom-button" color="primary" (click)="loadSerialList()">
+                        <button *ngIf="false" mat-raised-button class="custom-button" color="primary" (click)="loadSerialList()">
                             Search All
                         </button>
                     </div>
@@ -162,7 +162,7 @@
                             </mat-expansion-panel>
 
                         </mat-accordion>
-                        <mat-paginator 
+                        <mat-paginator *ngIf="chevronSerialList.length > 0 ? true : false"
                         #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
                             [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = pageChangeEvent($event)"
                             [showFirstLastButtons]="true">

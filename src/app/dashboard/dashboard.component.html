@@ -1,0 +1,171 @@
+<div class="row">
+    <div class="col-md-12">
+        <mat-card class="mat-card-custom">
+            <mat-card-content>
+                <div class="row margin">
+                    <mat-card *ngIf="false" class="card-custom center gray">
+                        <mat-card-content class="custom-font">
+                            <div>
+                                <h1 id="">
+                                    0
+                                </h1>
+                            </div>
+                            <div>
+                                Test
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="card-custom center gray">
+                        <mat-card-content class="custom-font">
+                            <spinner [visible]='isCardSpinner'></spinner>
+                            <div [ngClass]="!isCardSpinner ? '' : 'dni'">
+                                <h1 id="custom-counter-1" class="big-font">
+                                    {{ this.totalScans ?? 0 }}
+                                </h1>
+                            </div>
+                            <div *ngIf="!isCardSpinner">
+                                Total Scans
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="card-custom center red">
+                        <mat-card-content class="custom-font">
+                            <spinner [visible]='isCardSpinner'></spinner>
+                            <div [ngClass]="!isCardSpinner ? '' : 'dni'">
+                                <h1 id="custom-counter-2" class="big-font">
+                                    {{ this.badScans ?? 0 }}
+                                </h1>
+                            </div>
+                            <div *ngIf="!isCardSpinner">
+                                Bad Scans
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                    
+                    <mat-card class="card-custom center gray">
+                        <mat-card-content class="custom-font">
+                            <spinner [visible]='isCardSpinner'></spinner>
+                            <div [ngClass]="!isCardSpinner ? '' : 'dni'">
+                                <h1 id="custom-counter-3" class="big-font">
+                                    {{ this.goodScans ?? 0 }}
+                                </h1>
+                            </div>
+                            <div *ngIf="!isCardSpinner">
+                                Good Scans
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="card-custom center gray">
+                        <mat-card-content class="custom-font">
+                            <spinner [visible]='isCardSpinner'></spinner>
+                            <div [ngClass]="!isCardSpinner ? '' : 'dni'">
+                                <h1 id="custom-counter-4" class="big-font">
+                                    {{ this.verifiedSMS ?? 0 }}
+                                </h1>
+                            </div>
+                            <div *ngIf="!isCardSpinner">
+                                SMS Verification
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div style="margin: 0 auto; margin-top: 100px;">
+                    <h1 style="font-weight: 500;">Chevron Last Scan Summary</h1>
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                        <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- S.No Column -->
+                        <ng-container matColumnDef="sNo">
+                            <th mat-header-cell *matHeaderCellDef>
+                                S.No
+                            </th>
+                            <!-- <td mat-cell *matCellDef="let row; let i = index;"> -->
+                            <td mat-cell *matCellDef="let element; let i = index;">
+                                {{ (pageIndex * pageSize) + (i + 1) }}
+                            </td>
+                        </ng-container>
+
+                        <!-- poNo Column -->
+                        <ng-container matColumnDef="productName">
+                            <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{ element?.productName || "NA" }}
+                            </td>
+                        </ng-container>
+
+                        <!-- vendorCode Column -->
+                        <ng-container matColumnDef="mobileNo">
+                            <th mat-header-cell *matHeaderCellDef> Mobile No </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{ element?.mobileNo || "NA" }}
+                            </td>
+                        </ng-container>
+
+                        <!-- vendorName Column -->
+                        <ng-container matColumnDef="batchNo">
+                            <th mat-header-cell *matHeaderCellDef> Batch No. </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{ element?.batchId || "NA" }}
+                            </td>
+                        </ng-container>
+
+
+                        <!-- Status Column -->
+                        <ng-container matColumnDef="serialNo">
+                            <th mat-header-cell *matHeaderCellDef> Serial No. </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{ element?.serialNo || "NA" }}
+                            </td>
+                        </ng-container>
+
+                        <!-- poType Column -->
+                        <ng-container matColumnDef="scanLocation">
+                            <th mat-header-cell *matHeaderCellDef> Location </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a *ngIf="element.scanLocation != null" target="_blank" [href]="element.scanLocation">
+                                    {{ element.scanLoc ?? 'NA' }}</a>
+                                {{!element.scanLoc? "NA" : "" }}
+                            </td>
+                        </ng-container>
+
+                        <!-- poDate Column -->
+                        <ng-container matColumnDef="scanDate">
+                            <th mat-header-cell *matHeaderCellDef> Date </th>
+                            <td mat-cell *matCellDef="let element">
+                                <!-- {{ element?.poDate || "NA" }} -->
+                                {{ (element && element.scanDate) ?
+                                (element.scanDate | date:'dd-MM-yyyy') :
+                                (element?.scanDate || "NA")
+                                }}
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <div class="row"
+                        *ngIf="(dataSource.data.length == 0 || dataSource.filteredData.length == 0) && !isSpinner">
+                        <div class="snipet download-btn" *ngIf="false">
+                            <!-- <button (click)="refreshList()" mat-raised-button> -->
+                            <button mat-raised-button (click)="refreshList()">
+                                <i class="material-icons">refresh</i> No Data Found
+                            </button>
+                        </div>
+                    </div>
+                    <spinner [visible]='isSpinner'></spinner>
+
+                    <mat-paginator style="margin-bottom: 100px;" #paginator [length]="length" [pageIndex]="pageIndex"
+                        [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                        (page)="pageEvent = pageChangeEvent($event)" [showFirstLastButtons]="true">
+                    </mat-paginator>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
