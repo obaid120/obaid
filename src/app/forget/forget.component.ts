@@ -7,12 +7,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./forget.component.css']
 })
 export class ForgetComponent implements OnInit {
-  loginForm!: FormGroup;
+  // loginForm!: FormGroup;
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+
+  onRecover(){
+    console.log('success');
   }
 
 }
