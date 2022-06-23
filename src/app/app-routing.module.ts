@@ -12,8 +12,8 @@ const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path : 'login' , component: LoginComponent, canActivate: [MainGuard]},
-  {path : 'forgetPassword' , component: ForgetComponent},
-  {path: 'search', component: SearchFormComponent}
+  {path : 'forgetPassword' , component: ForgetComponent, canActivate: [MainGuard]},
+  {path: 'search', component: SearchFormComponent, canActivate: [AuthGuard]}
 ];
 
 const config: ExtraOptions = {

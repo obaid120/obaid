@@ -10,9 +10,9 @@
     </mat-toolbar>
 </div>
 
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" (backdropClick)="closedStart($event)">
     <mat-sidenav *ngIf="isLoggedIn" class="snc" #snav [mode]="isNavOpen ? 'over' : 'side'" opened="isNavOpen"
-        [fixedInViewport]="isNavOpen" fixedTopGap="64">
+        [fixedInViewport]="isNavOpen" fixedTopGap="64" >
         <mat-selection-list  [multiple]="false">
             <!-- <mat-list-item (click)="isExpanded = !isExpanded">
                 <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right

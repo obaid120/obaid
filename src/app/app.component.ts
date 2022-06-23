@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from './core/services/auth/auth.service';
@@ -26,12 +27,16 @@ export class AppComponent implements OnInit {
 
   token: string;
   isNavOpen = false;
+  @ViewChild('snav') sidenav: MatSidenav;
 
   loginSub = new Subscription();
   isLoggedIn = false;
 
   ngOnInit(): void {
     this.isLoggedIn = this._authService.isLoggedIn();
+    if (!this.isLoggedIn) {
+      localStorage.clear();
+    }
     this.loginSub = this.loginState.subject.subscribe(
       (value) => {
         this.isLoggedIn = value;
@@ -87,8 +92,15 @@ export class AppComponent implements OnInit {
   }
 
   toggleNav() {
-    this.isNavOpen = !this.isNavOpen;
-    this.cdr.detectChanges();
+      this.isNavOpen = !this.isNavOpen;
+    // this.cdr.detectChanges();
+  }
+
+  closedStart(event: any) {
+    setTimeout(() => {
+      this.isNavOpen = false;
+      this.sidenav.open();
+    }, 5);
   }
 
   title = 'Chevron Portal';
