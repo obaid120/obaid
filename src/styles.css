@@ -123,7 +123,7 @@ body {
 
 .custom-form-field {
     border-radius: 4px !important;
-    height: 36% !important;
+    height: 30% !important;
     border: 1px solid lightgray !important;
     vertical-align: middle !important;
 }
@@ -148,4 +148,9 @@ body {
     font-family: 'Poppins';
     font-weight: 500;
     color: #6d6d6d;
+}
+
+.side-margin {
+    margin-left: 25px;
+    margin-right: 25px;
 }

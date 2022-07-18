@@ -11,21 +11,24 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div class="tr-sec-box">
-                        <div class="col-md-4">
+                        <div class="col-md-4 side-margin">
                             <div class="label-div">
-                                <mat-label>Serial No.</mat-label>
+                                <mat-label class="custom-label">Code</mat-label>
                             </div>
                             <mat-form-field class="full-width custom-form-field" appearance="none">
-                                <input matInput class="custom-input" type="text" [(ngModel)]="keyword">
+                                <input matInput class="custom-input" placeholder="Code" type="text" [(ngModel)]="keyword">
                                 <button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear"
                                     (click)="keyword=''">
                                     <mat-icon>close</mat-icon>
                                 </button>
                             </mat-form-field>
                         </div>
-                        <div class="col-md-4">
-                            <mat-form-field class="full-width">
-                                <mat-select fullWidth placeholder="Code Type" [(ngModel)]="codeType">
+                        <div class="col-md-4 side-margin">
+                            <div class="label-div">
+                                <mat-label class="custom-label">Code Type</mat-label>
+                            </div>
+                            <mat-form-field class="full-width custom-form-field" appearance="none">
+                                <mat-select fullWidth class="custom-input" placeholder="Select" [(ngModel)]="codeType">
                                     <mat-option>None</mat-option>
                                     <mat-option *ngFor="let code of codeList" [value]="code.id">
                                         {{ code.value || "NA" }}
@@ -33,13 +36,13 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 side-margin padding-cust">
                             <button mat-raised-button class="custom-button" color="primary"
                                 [disabled]="this.keyword && this.codeType ? false : true" (click)="search()">
                                 Search
                             </button>
                         </div>
-                        <div *ngIf="true" class="col-md-2">
+                        <div *ngIf="false" class="col-md-2">
                             <button mat-raised-button class="custom-button" color="primary" (click)="loadSerialList()">
                                 Search All
                             </button>
@@ -60,7 +63,7 @@
                                         Status: {{ serial.isDestroyed == 1 ? "Destroyed" : "Not Destroyed" }}
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
-                                <div class="row medium">
+                                <div class="row medium" *ngIf="false">
                                     <div class="col-md-2">
                                         <strong>Serial No:</strong>
                                     </div>

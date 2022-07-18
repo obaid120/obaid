@@ -98,6 +98,7 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
         }
 
         this.chevronSerialList = oList;
+        this.tempChevronSerialList = this.chevronSerialList;
 
         this._uiService.hideSpinner();
         this._logService.logMessage("this.chevronSerialList");
