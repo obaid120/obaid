@@ -92,17 +92,12 @@ export class DashboardComponent implements OnInit {
 
       this.length = res ? res.length || 0 : 0;
 
-      this._logService.logMessage("res Purchase Order list: ");
-      this._logService.logResponse(array);
-
       var oList: DashboardSummary[] = [];
       for (let i = 0; i < array.length; i++) {
         let o = this._mappingService.mapDashboardSummary(array[i]);
         oList.push(o);
       }
       this.lastScanSummaryList = oList;
-      this._logService.logMessage("oList: ");
-      this._logService.logResponse(oList);
 
       this.dataSource = new MatTableDataSource<DashboardSummary>(
         this.lastScanSummaryList
@@ -117,10 +112,8 @@ export class DashboardComponent implements OnInit {
         this._uiService.showToast(msg, "info");
       }
     } catch (error) {
-      // this.isSpinner = false;
       this._logService.logMessage("error: ");
       this._logService.logError(error);
-
       this._authService.errStatusCheckResponse(error);
     }
   }
