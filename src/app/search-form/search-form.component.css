@@ -17,7 +17,7 @@
 
 .bold {
     right: 700px;
-    position: absolute;
+    /* position: absolute; */
     font-weight: bold;
 }
 
@@ -51,6 +51,12 @@
 
 .padding-cust {
     padding: 52px 20px 20px 20px;
+}
+.mar {
+    margin-left: 10px;
+}
+.marr {
+    margin-left: 24px;
 }
 
 
