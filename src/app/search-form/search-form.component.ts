@@ -10,6 +10,7 @@ import { MappingService } from '../core/services/mapping/mapping.service';
 import { UIService } from '../core/services/ui/ui.service';
 import { UtilityService } from '../core/services/utility/utility.service';
 
+
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
@@ -31,6 +32,8 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
   panelOpenState = false;
   firstTime = true;
   mySubscription: any;
+  showMessages: any;
+  errors: any;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -57,7 +60,7 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-  
+
   }
   ngOnInit(): void {
     let token = localStorage.getItem('token_id');
@@ -85,8 +88,6 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
 
         let array = res.data || [];
 
-        this._logService.logMessage("res Purchase Order list: ");
-        this._logService.logResponse(array);
 
 
         var oList: ChevronSerial[] = [];
@@ -111,11 +112,20 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
           this._uiService.showToast(msg, "info");
         }
       } catch (error) {
+        msg.msg = "Error Occured";
+        msg.msgType = MessageTypes.Error;
+        msg.autoCloseAfter = 400;
+        this._uiService.showToast(msg, '');
+
         this.isSpinner = false;
         this._logService.logMessage("error: ");
         this._logService.logError(error);
 
         this._authService.errStatusCheckResponse(error);
+        // alert('error');
+        // console.log('error');
+        this._uiService.hideSpinner();
+
       }
 
 
@@ -126,7 +136,7 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
       this._uiService.showToast(msg, '');
     }
   }
-  
+
   async loadSerialList() {
     const msg = new Message();
     if (true) {
@@ -164,11 +174,13 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
           this._uiService.showToast(msg, "info");
         }
       } catch (error) {
+
         this.isSpinner = false;
         this._logService.logMessage("error: ");
         this._logService.logError(error);
 
         this._authService.errStatusCheckResponse(error);
+
       }
 
 

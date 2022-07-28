@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { SpinComponent } from './spin/spin.component';
 import { PageLoaderComponent } from './pageLoader/pageLoader.component';
+import { ToastComponent } from './toast/toast.component';
 
 
 
@@ -22,11 +23,12 @@ import { PageLoaderComponent } from './pageLoader/pageLoader.component';
     declarations: [
         NavComponent,
         SpinComponent,
-        PageLoaderComponent
+        PageLoaderComponent,
+        ToastComponent
     ],
 
     exports: [
-        NavComponent, CommonModule, SpinComponent, PageLoaderComponent
+        NavComponent, CommonModule, SpinComponent, PageLoaderComponent, ToastComponent
     ]
 })
 export class SharedModule {

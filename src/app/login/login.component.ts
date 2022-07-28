@@ -16,6 +16,7 @@ import { UtilityService } from '../core/services/utility/utility.service';
 import { ConfigurationService } from '../core/services/configuration/configuration.service';
 import { ConfigurationParameter } from '../core/models/configuration.model';
 import { LoginStateService } from '../core/services/login-state/login-state.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -26,7 +27,8 @@ import { LoginStateService } from '../core/services/login-state/login-state.serv
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
+  
   // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   loginForm!: FormGroup;
   user: User = new User();
@@ -46,7 +48,8 @@ export class LoginComponent implements OnInit {
     private _utilityService: UtilityService,
     private _configurationService: ConfigurationService,
     private _router: Router,
-    private loginState: LoginStateService
+    private loginState: LoginStateService,
+    private _snackBar: MatSnackBar
   ) { }
 
 
@@ -151,6 +154,7 @@ export class LoginComponent implements OnInit {
           }, 200);
 
         } catch (error) {
+          
           this.isSubmitted = false;
           this._uiService.hideSpinner();
 
@@ -161,6 +165,7 @@ export class LoginComponent implements OnInit {
 
           // this._authService.logoutUser();
           this._authService.logoutUser_();
+          
 
 
         }
@@ -204,7 +209,9 @@ export class LoginComponent implements OnInit {
 
       this._logService.logMessage('get ConfigurationProfile api err: ');
       this._logService.logError(error);
+      
     }
   }
+ 
 
 }

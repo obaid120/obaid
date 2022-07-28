@@ -11,7 +11,7 @@ export class Message {
     iconType = 'info';
     icon = '';
     msg = '';
-    title = 'Agha Steel';
+    title = 'Chevron';
     autoCloseAfter = 0;
     okBtnTitle = 'Ok';
     cancelBtnTitle = 'Cancel';

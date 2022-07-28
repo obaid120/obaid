@@ -54,6 +54,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 // import { MatTabsModule } from '@angular/material/tabs';
 // import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatTooltipModule } from '@angular/material/tooltip';
@@ -83,7 +84,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatTooltipModule, MatSidenavModule,
     MatToolbarModule, MatListModule,
     MatExpansionModule,
-    MatMenuModule, MatTableModule, MatPaginatorModule, MatDatepickerModule, MatNativeDateModule
+    MatMenuModule, MatTableModule, MatPaginatorModule, MatDatepickerModule, MatNativeDateModule,MatSnackBarModule
   ],
 
   exports: [
@@ -104,7 +105,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatToolbarModule, MatListModule,
     MatExpansionModule,
     MatMenuModule, MatTableModule, MatPaginatorModule, MatStepperModule,
-    MatDatepickerModule, MatGridListModule, MatNativeDateModule
+    MatDatepickerModule, MatGridListModule, MatNativeDateModule,MatSnackBarModule
   ]
 })
 export class MaterialModule { }
