@@ -112,16 +112,17 @@ export class SearchFormComponent implements OnInit, AfterViewInit {
           this._uiService.showToast(msg, "info");
         }
       } catch (error) {
-        msg.msg = "Error Occured";
+        const msg = new Message();
+        msg.msg = "Serials Not Found";
         msg.msgType = MessageTypes.Error;
         msg.autoCloseAfter = 400;
-        this._uiService.showToast(msg, '');
+        this._uiService.showToast(msg, 'error');
 
         this.isSpinner = false;
-        this._logService.logMessage("error: ");
-        this._logService.logError(error);
+        // this._logService.logMessage("error: ");
+        // this._logService.logError(error);
 
-        this._authService.errStatusCheckResponse(error);
+        // this._authService.errStatusCheckResponse(error);
         // alert('error');
         // console.log('error');
         this._uiService.hideSpinner();

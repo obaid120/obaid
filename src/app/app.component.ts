@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, Renderer2, 
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Message, MessageTypes } from './core/models/message.model';
 import { AuthService } from './core/services/auth/auth.service';
 import { LogService } from './core/services/log/log.service';
 import { LoginStateService } from './core/services/login-state/login-state.service';
@@ -69,6 +70,13 @@ export class AppComponent implements OnInit {
     this.loginState.subject.next(false);
     this._authService.logoutUser_();
     this._uiService.hideSpinner();
+    
+          const msg = new Message();
+          msg.msg = "Logout Success";
+          msg.msgType = MessageTypes.Confirmation;
+          msg.autoCloseAfter = 400;
+          this._uiService.showToast(msg,'info')
+
   }
 
 

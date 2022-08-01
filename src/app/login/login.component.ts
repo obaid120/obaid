@@ -7,7 +7,7 @@ import { User, UserNavigation, UserPermission, UserRole } from '../core/models/u
 import { ChevronSerial } from '../core/models/atk.model';
 import { AuthService } from '../core/services/auth/auth.service'
 import { LogService } from '../core/services/log/log.service';
-import { Message } from '../core/models/message.model';
+import { Message , MessageTypes} from '../core/models/message.model';
 import { UIService } from '../core/services/ui/ui.service';
 import { MappingService } from '../core/services/mapping/mapping.service';
 import { Role } from '../core/models/role.model';
@@ -72,9 +72,12 @@ export class LoginComponent implements OnInit {
     this._logService.logMessage('login');
     const msg = new Message();
     // msg.title = '';
+          
 
     // this.emailFocusOut();
     if (this.loginForm.invalid) {
+          
+
 
       if (this.loginForm.controls['email'].hasError('required') && this.loginForm.controls['password'].hasError('required')) {
         msg.msg = 'Email and password are required.';
@@ -95,6 +98,7 @@ export class LoginComponent implements OnInit {
       this._logService.logMessage(this.userEmail);
       this._logService.logMessage(this.userPassword);
       this.isSubmitted = true;
+      
       try {
         this.user.email = this.userEmail;
         this.user.password = this.userPassword;
@@ -152,6 +156,10 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['dashboard']);
             this._uiService.hideSpinner();
           }, 200);
+          const msg = new Message()
+          msg.msg= 'Login Success'
+          msg.msgType = MessageTypes.Confirmation; 
+          this._uiService.showToast(msg,'info')
 
         } catch (error) {
           
@@ -180,6 +188,7 @@ export class LoginComponent implements OnInit {
       }
 
     }
+          
 
   }
 
