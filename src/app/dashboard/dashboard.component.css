@@ -68,6 +68,18 @@
   margin-top: 100px !important;
 }
 
+.full-margin {
+  margin-top: 50px !important;
+}
+
+.half-margin {
+  margin-top: 20px !important;
+}
+
+.q-margin {
+  margin-top: 10px !important; 
+}
+
 .center {
   margin: 0 auto;
   /* position: absolute; */

@@ -34,7 +34,8 @@ export class AppComponent implements OnInit {
   isLoggedIn = false;
 
   ngOnInit(): void {
-    this.isLoggedIn = this._authService.isLoggedIn();
+    // this.isLoggedIn = this._authService.isLoggedIn();
+    this.isLoggedIn = this._authService.fakeIsLoggedIn();
     if (!this.isLoggedIn) {
       localStorage.clear();
     }

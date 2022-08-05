@@ -7,7 +7,7 @@ import { User, UserNavigation, UserPermission, UserRole } from '../core/models/u
 import { ChevronSerial } from '../core/models/atk.model';
 import { AuthService } from '../core/services/auth/auth.service'
 import { LogService } from '../core/services/log/log.service';
-import { Message , MessageTypes} from '../core/models/message.model';
+import { Message, MessageTypes } from '../core/models/message.model';
 import { UIService } from '../core/services/ui/ui.service';
 import { MappingService } from '../core/services/mapping/mapping.service';
 import { Role } from '../core/models/role.model';
@@ -27,8 +27,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-  
+
+
   // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   loginForm!: FormGroup;
   user: User = new User();
@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    localStorage.clear();
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
@@ -67,16 +68,65 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['forgetPassword']);
   }
 
+  onLogin2() {
+    // async loginOld() {
+    this._logService.logMessage('login222');
+    const msg = new Message();
+    // msg.title = '';
+
+
+    // this.emailFocusOut();
+    if (this.loginForm.invalid) {
+      if (this.loginForm.controls['email'].hasError('required') && this.loginForm.controls['password'].hasError('required')) {
+        msg.msg = 'Email and password are required.';
+      } else if (this.loginForm.controls['email'].hasError('required')) {
+        msg.msg = 'Email is required.';
+      } else if (this.loginForm.controls['email'].hasError('email')) {
+        msg.msg = 'Invalid email address.';
+      } else if (this.loginForm.controls['email'].hasError('pattern') || this.loginForm.controls['email'].hasError('incorrect')) {
+        msg.msg = 'Invalid email address.';
+      } else if (this.loginForm.controls['password'].hasError('required')) {
+        msg.msg = 'Password is required.';
+      }
+      this._uiService.showToast(msg, '');
+    } else {
+      let checkEmail = 'administrator@chevron.com';
+      let checkPassword = 'administrator';
+      this._uiService.showSpinner();
+      if (this._utilityService.isStringMatched(this.userEmail, [checkEmail], true)) {
+        if (this._utilityService.isStringMatched(this.userPassword, [checkPassword], true)) {
+          msg.msg = 'Login Success'
+          msg.msgType = MessageTypes.Confirmation;
+          this._uiService.showToast(msg, 'info')
+          localStorage.setItem('verify', 'foobarfoo');
+          localStorage.setItem('dash', 'fordash');
+          setTimeout(() => {
+            this.router.navigate(['dashboard']);
+            this._uiService.hideSpinner();
+          }, 200);
+        } else {
+          msg.msg = 'Incorrect Password entered.';
+          this._uiService.showToast(msg, '');
+          this._uiService.hideSpinner();
+        }
+      } else {
+        msg.msg = 'Incorrect Email address.';
+        this._uiService.showToast(msg, '');
+        this._uiService.hideSpinner();
+      }
+    }
+  }
+
   async onLogin() {
     // async loginOld() {
     this._logService.logMessage('login');
     const msg = new Message();
     // msg.title = '';
-          
+
 
     // this.emailFocusOut();
     if (this.loginForm.invalid) {
-          
+
 
 
       if (this.loginForm.controls['email'].hasError('required') && this.loginForm.controls['password'].hasError('required')) {
@@ -98,7 +148,7 @@ export class LoginComponent implements OnInit {
       this._logService.logMessage(this.userEmail);
       this._logService.logMessage(this.userPassword);
       this.isSubmitted = true;
-      
+
       try {
         this.user.email = this.userEmail;
         this.user.password = this.userPassword;
@@ -157,12 +207,12 @@ export class LoginComponent implements OnInit {
             this._uiService.hideSpinner();
           }, 200);
           const msg = new Message()
-          msg.msg= 'Login Success'
-          msg.msgType = MessageTypes.Confirmation; 
-          this._uiService.showToast(msg,'info')
+          msg.msg = 'Login Success'
+          msg.msgType = MessageTypes.Confirmation;
+          this._uiService.showToast(msg, 'info')
 
         } catch (error) {
-          
+
           this.isSubmitted = false;
           this._uiService.hideSpinner();
 
@@ -173,7 +223,7 @@ export class LoginComponent implements OnInit {
 
           // this._authService.logoutUser();
           this._authService.logoutUser_();
-          
+
 
 
         }
@@ -188,7 +238,7 @@ export class LoginComponent implements OnInit {
       }
 
     }
-          
+
 
   }
 
@@ -218,9 +268,9 @@ export class LoginComponent implements OnInit {
 
       this._logService.logMessage('get ConfigurationProfile api err: ');
       this._logService.logError(error);
-      
+
     }
   }
- 
+
 
 }

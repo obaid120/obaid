@@ -150,7 +150,33 @@ body {
     color: #6d6d6d;
 }
 
+.custom-label-black {
+    font-size: 18px;
+    font-family: 'Poppins';
+    font-weight: 500;
+    color: #000000;
+}
+
 .side-margin {
     margin-left: 25px;
     margin-right: 25px;
+}
+
+.dni {
+    display: none !important;
+}
+
+.pad {
+    padding: 20px 20px 20px 20px !important;
+}
+
+.custom-dd {
+    border: 2px solid #f7274a;
+    height: 45px;
+    border-radius: 8px;
+    padding: 10px 10px 10px 15px;
+}
+
+.small-font {
+    font-size: 14px !important;
 }

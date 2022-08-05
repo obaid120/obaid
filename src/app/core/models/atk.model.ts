@@ -66,6 +66,8 @@ export class DashboardSummary {
 
     scanLocation: string;
     scanLoc: string;
+
+    innerData: DashboardListInnerItems;
 }
 
 export class SummaryParams {
@@ -74,4 +76,38 @@ export class SummaryParams {
     endDate: string;
     batchId: string;
     recordNo: string;
+}
+
+export class ScanData {
+    goodScans: number;
+    badScans: number;
+    alreadyScanned: number;
+    totalScans: number;
+    goodSMS: number;
+    badSMS: number;
+    alreadyVerified: number;
+    totalVerified: number;
+}
+
+export class DashboardListInnerItems {
+    isPrinted: boolean;
+    printDate: string;
+    isDelivered: boolean;
+    deliverDate: string;
+    isApplied: boolean;
+    applyDate: string;
+    isDestroyed: boolean;
+    destoryDate: string;
+
+
+    // PO Request
+    status: string;
+    chevronPONo: string;
+    quantity: string;
+    priceOfLabel: string;
+}
+
+export class Status {
+    code: string;
+    name: string;
 }

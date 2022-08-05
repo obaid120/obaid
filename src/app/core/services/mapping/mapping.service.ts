@@ -67,7 +67,7 @@ import { UserModule } from "../../models/user-module.model";
 import { Organization } from "../../models/organization.model";
 import { UtilityService } from "../utility/utility.service";
 import { LogService } from "../log/log.service";
-import { ChevronSerial, DashboardSummary, PORequest } from "../../models/atk.model";
+import { ChevronSerial, DashboardListInnerItems, DashboardSummary, PORequest } from "../../models/atk.model";
 import { environment } from "src/environments/environment";
 
 declare function unescape(s: string): string;
@@ -1345,7 +1345,7 @@ export class MappingService {
   public mapChevronSerial(res: any): ChevronSerial {
     const resData = res ? res : null;
     let isMapData = new ChevronSerial();
-    if(resData) {
+    if (resData) {
       isMapData.id = resData.id;
       isMapData.isActive = resData.isActive || null;
       isMapData.createdBy = resData.createdBy || null;
@@ -1367,15 +1367,30 @@ export class MappingService {
       isMapData.smsCode = resData.smsCode || null;
       isMapData.qrCode = resData.qrCode || null;
       isMapData.isPrinted = resData.isPrinted || null;
-      isMapData.printDate = resData.printDate || null;
+
+      isMapData.printDate = Date.parse(resData.printDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.printDate, "yyyy-MM-dd")
+        : resData.printDate || null;
       isMapData.isDelivered = resData.isDelivered || null;
-      isMapData.deliverDate = resData.deliverDate || null;
+
+      isMapData.deliverDate = Date.parse(resData.deliverDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.deliverDate, "yyyy-MM-dd")
+        : resData.deliverDate || null;
       isMapData.isApplied = resData.isApplied || null;
-      isMapData.applyDate = resData.applyDate || null;
+
+      isMapData.applyDate = Date.parse(resData.applyDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.applyDate, "yyyy-MM-dd")
+        : resData.applyDate || null;
       isMapData.isScanned = resData.isScanned || null;
-      isMapData.scanDate = resData.scanDate || null;
+
+      isMapData.scanDate = Date.parse(resData.scanDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.scanDate, "yyyy-MM-dd")
+        : resData.scanDate || null;
       isMapData.isDestroyed = resData.isDestroyed || null;
-      isMapData.destoryDate = resData.destoryDate || null;
+
+      isMapData.destoryDate = Date.parse(resData.destoryDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.destoryDate, "yyyy-MM-dd")
+        : resData.destoryDate || null;
     }
     return isMapData;
   }
@@ -1383,7 +1398,7 @@ export class MappingService {
   public mapPORequest(res: any): PORequest {
     const resData = res ? res : null;
     let isMapData = new PORequest();
-    if(resData) {
+    if (resData) {
       isMapData.id = resData.id;
       isMapData.isActive = resData.isActive || null;
       isMapData.createdBy = resData.createdBy || null;
@@ -1412,14 +1427,14 @@ export class MappingService {
       isMapData.cancelDate = resData.cancelDate || null;
       isMapData.codesFile = resData.codesFile || null;
       isMapData.printedCodesFile = resData.printedCodesFile || null;
-    } 
+    }
     return isMapData;
   }
 
-  public mapDashboardSummary(res: any) : DashboardSummary {
+  public mapDashboardSummary(res: any): DashboardSummary {
     const resData = res ? res : null;
-    let isMapData = new DashboardSummary
-    if(resData) {
+    let isMapData = new DashboardSummary();
+    if (resData) {
       isMapData.id = resData.id
       isMapData.scannedOn = resData.scannedOn || null;
       isMapData.scanMethod = resData.scanMethod || null;
@@ -1438,10 +1453,49 @@ export class MappingService {
       isMapData.batchId = resData.batchId || null;
       isMapData.lineId = resData.lineId || null;
       isMapData.productName = resData.productName || null;
-      isMapData.scanLoc = resData.latitude != null && resData.longitude != null ? 
-      `${ resData.latitude.toFixed(2) }, ${ resData.longitude.toFixed(2) }` : null;
-      isMapData.scanLocation = resData.latitude != null && resData.longitude != null ? 
-      `https://maps.google.com/?q=${ resData.latitude },${ resData.longitude }` : null;
+      isMapData.scanLoc = resData.latitude != null && resData.longitude != null ?
+        `${resData.latitude.toFixed(2)}, ${resData.longitude.toFixed(2)}` : null;
+      isMapData.scanLocation = resData.latitude != null && resData.longitude != null ?
+        `https://maps.google.com/?q=${resData.latitude},${resData.longitude}` : null;
+
+      if (isMapData.scanDate != null) {
+        const date = new Date(isMapData.scanDate);
+        date.setHours(date.getHours() + 5);
+        isMapData.scanDate = date.toISOString();
+      }
+    }
+    return isMapData;
+  }
+
+  public mapDashboardInnerItems(res: any): DashboardListInnerItems {
+    const resData = res ? res : null;
+    let isMapData = new DashboardListInnerItems();
+    if (resData) {
+      isMapData.isPrinted = resData.isPrinted || null;
+      isMapData.printDate = Date.parse(resData.printDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.printDate, "yyyy-MM-dd")
+        : resData.printDate || null;
+
+      isMapData.isDelivered = resData.isDelivered || null;
+      isMapData.deliverDate = Date.parse(resData.deliverDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.deliverDate, "yyyy-MM-dd")
+        : resData.deliverDate || null;
+
+      isMapData.isApplied = resData.isApplied || null;
+      isMapData.applyDate = Date.parse(resData.applyDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.applyDate, "yyyy-MM-dd")
+        : resData.applyDate || null;
+
+      isMapData.isDestroyed = resData.isDestroyed || null;
+      isMapData.destoryDate = Date.parse(resData.destoryDate).toString() != "NaN"
+        ? this.datePipe.transform(resData.destoryDate, "yyyy-MM-dd")
+        : resData.destoryDate || null;
+
+      // PO Request Details
+      isMapData.status = resData.status || null;
+      isMapData.chevronPONo = resData.chevronPONo || null;
+      isMapData.quantity = resData.quantity || null;
+      isMapData.priceOfLabel = resData.priceOfLabel || null;
     }
     return isMapData;
   }

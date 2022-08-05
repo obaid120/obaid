@@ -17,6 +17,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ConfigurationParameter, ConfigurationProfile } from '../../models/configuration.model';
 import { environment } from '../../../../environments/environment';
 import { LogService } from '../log/log.service';
+import { UtilityService } from '../utility/utility.service';
 
 
 @Injectable()
@@ -38,7 +39,8 @@ export class AuthService {
     _handler: HttpBackend,
     private _router: Router,
     private _uiService: UIService,
-    private _logService: LogService
+    private _logService: LogService,
+    private _util: UtilityService
   ) {
     this._http = new HttpClient(_handler);
   }
@@ -392,6 +394,13 @@ export class AuthService {
       }
     }
     return false;
+  }
+
+  fakeIsLoggedIn() : boolean {
+    let check = localStorage.getItem('verify');
+    this._logService.logMessage("checkHereer");
+    this._logService.logMessage(check);
+    return this._util.isStringMatched(check, ['foobarfoo'], true);
   }
 
   register() {

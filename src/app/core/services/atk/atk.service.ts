@@ -35,8 +35,20 @@ export class ATKService {
         return await this._http.post(url, body).toPromise();
     }
 
+
+
+    async getAllSerialScanSummaryCount(body: SummaryParams) {
+        let url = "atk/serial/scan/summary/count";
+        return await this._http.post(url, body).toPromise();
+    }
+
     async getScanSummary() {
         let url ="atk/serial/scan/summary";
+        return await this._http.get(url).toPromise();
+    }
+
+    async getScans() {
+        let url = "atk/serial/scan";
         return await this._http.get(url).toPromise();
     }
 }

@@ -17,6 +17,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpCancelService } from './services/base/httpCancel.service';
 import { AuthGuard } from './guards/auth.guard';
 import { MainGuard } from './guards/main.guard';
+import { PhonePipe } from './services/pipe/phone-format.pipe';
 
 
 
@@ -52,7 +53,8 @@ import { MainGuard } from './guards/main.guard';
             useClass: InterceptorService,
             multi: true,
         },
-        HttpCancelService
+        HttpCancelService,
+        PhonePipe
     ]
 })
 export class CoreModule {
