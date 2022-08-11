@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   dataSource = new MatTableDataSource<DashboardSummary>(
-
+    this.lastScanSummaryList
   );
 
   statusList: Status[] = [
@@ -87,7 +87,17 @@ export class DashboardComponent implements OnInit {
     {code: "Recalled", name: "Recalled"},
     {code: "Fake", name: "Fake"},
   ];
-  statusFilterObj: string;
+
+  scanType: Status[] = [
+    {code: "Qr", name: "QR"},
+    {code: "Sms", name: "SMS"},
+    {code: "Serial", name: "Serial"}
+  ];
+  statusFilterObj: string = null;
+  scanTypeFilterObj: string = null;
+  startDate: any = null;
+  endDate: any = null;
+  keyword: string = null;
 
   constructor(
     private _atkService: ATKService,
@@ -102,6 +112,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loadScanInfoSummaryList();
     this.loadScanSummary();
+    this.applyFilters();
     let item = localStorage.getItem('dash');
     this._logService.logMessage("dashitem");
     this._logService.logMessage(item);
@@ -128,11 +139,15 @@ export class DashboardComponent implements OnInit {
     this.paginations = [];
     this.pagination = 0;
     this.length = 0;
+    this.dataSource = new MatTableDataSource<DashboardSummary>(
+      this.lastScanSummaryList
+    );
     let res: any = await this._atkService.getAllSerialScanSummaryCount(this.params);
 
     if (res) {
       this.length = res.length || 0;
       this.pagination = this.getNumberOfPages();
+      
 
       if (this.length > 0) {
 
@@ -144,7 +159,7 @@ export class DashboardComponent implements OnInit {
           let res1: any = await this._atkService.getAllSerialScanSummaryPageWise(this.pageIndex, this.pageSize, this.params);
 
           this.isSpinner = false;
-          this._logService.logMessage("success res: ");
+          this._logService.logMessage("success res:-------");
           this._logService.logResponse(res1);
           let array = res1 || [];
 
@@ -301,7 +316,7 @@ export class DashboardComponent implements OnInit {
     // this.search();
 
     this.loadScanInfoSummaryList();
-
+    this.applyFilters();
     return event;
   }
 
@@ -326,14 +341,18 @@ export class DashboardComponent implements OnInit {
 
   applyFilters() {
     this.params = new SummaryParams();
-    this._logService.logMessage("StatusFilterObj")
-    this._logService.logMessage("StatusFilterObj")
-    if (this.statusFilterObj) {
+    if (this.statusFilterObj != null) {
       this.params.scanResult = this.statusFilterObj;
-      this.loadScanInfoSummaryList();
-    } else {
-      this.loadScanInfoSummaryList();
+    } if (this.scanTypeFilterObj != null) {
+      this.params.scanType = this.scanTypeFilterObj;
+    } if (this.startDate && this.endDate) {
+      this.params.startDate = this.startDate;
+      this.params.endDate = this.endDate;
+    } if (this.keyword) {
+      this.params.keyword = this.keyword
     }
+
+    this.loadScanInfoSummaryList();
   }
 
 }

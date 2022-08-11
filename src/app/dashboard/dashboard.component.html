@@ -89,19 +89,79 @@
 
                 <div style="margin: 0 auto; margin-top: 100px;">
                     <h1 class="title-text">Chevron Last Scan Summary</h1>
-                    <div class="row half-margin pad" *ngIf="false">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="custom-label-black small-font">Status Filter</label>
-                                <br>
-                                    <mat-select class="custom-dd" fullWidth placeholder="Status" (selectionChange)="applyFilters()" [(ngModel)]="statusFilterObj">
+                    <div class="row">
+                        <!-- Status Filter -->
+                        <div class="row half-margin pad" *ngIf="true">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="custom-label-black small-font">Status Filter</label>
+                                    <br>
+                                    <mat-select class="custom-dd" fullWidth placeholder="Status"
+                                        [(ngModel)]="statusFilterObj">
                                         <mat-option>None</mat-option>
                                         <mat-option *ngFor="let status of statusList" [value]="status.code">
                                             {{ status.name || "NA" }}
                                         </mat-option>
                                     </mat-select>
+                                </div>
+                            </div>
+
+                            <!-- Scan Type -->
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="custom-label-black small-font">Scan Type Filter</label>
+                                    <br>
+                                    <mat-select class="custom-dd" fullWidth placeholder="Scan type"
+                                        [(ngModel)]="scanTypeFilterObj">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let status of scanType" [value]="status.code">
+                                            {{ status.name || "NA" }}
+                                        </mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+
+                            <!-- Date Filter -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="custom-label-black small-font">From</label>
+                                    <br>
+                                    <input class="custom-dd full-width" fullWidth type="date" fullWidth
+                                        placeholder="From" [(ngModel)]="startDate">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="custom-label-black small-font">To</label>
+                                    <br>
+                                    <input class="custom-dd full-width" fullWidth type="date" fullWidth placeholder="To"
+                                        min="{{startDate | date:'yyyy-MM-dd'}}" [(ngModel)]="endDate"
+                                        [disabled]="!startDate">
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-sm-3 top-pad">
+                                <div class="form-group">
+                                    <label class="custom-label-black small-font">Search (Product name, Batch No, Mobile No)</label>
+                                    <br>
+                                    <input class="custom-dd full-width" fullWidth type="text" fullWidth placeholder="Free text input"
+                                        [(ngModel)]="keyword"
+                                        >
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 top-pad side-margin  padding-cust">
+                                <label class="custom-label-black small-font">Click to Search</label>
+                                    <br>
+                                <button mat-raised-button class="custom-button" color="primary" (click)="applyFilters()"
+                                [disabled]="(statusFilterObj || scanTypeFilterObj || startDate || endDate || keyword) ? false : true">
+                                    Search
+                                </button>
                             </div>
                         </div>
+
                     </div>
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
 
@@ -167,9 +227,9 @@
                             <th mat-header-cell *matHeaderCellDef> Date / Time (24 Hr) </th>
                             <td mat-cell *matCellDef="let element">
                                 <!-- {{ element?.poDate || "NA" }} -->
-                                {{ (element && element.scanDate) ?
-                                (element.scanDate | date:'dd-MM-yyyy / HH:mm:ss ') :
-                                (element?.scanDate || "NA")
+                                {{ (element && element.scannedOn) ?
+                                (element.scannedOn | date:'dd-MM-yyyy / HH:mm:ss ') :
+                                (element?.scannedOn || "NA")
                                 }}
                             </td>
                         </ng-container>
@@ -276,6 +336,21 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- Scan Status -->
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label class="custom-label-black">Scan Status:</label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <span class="custom-label">
+                                                                <!-- ASIL -->
+                                                                {{ element.innerData?.isScanned || "NA" }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <!-- Inner Data Row 1 Div End -->
 
@@ -339,8 +414,87 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- Scan Date -->
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label class="custom-label-black">Scan Date:</label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <span class="custom-label">
+                                                                {{ (element.innerData &&
+                                                                element.innerData.scanDate &&
+                                                                element.innerData.isScanned) ?
+                                                                (element.innerData.scanDate) :
+                                                                ("NA")
+                                                                }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <!-- Inner Data Row 2 Div End -->
+
+                                            <!-- Inner Data Row 3 Div Start -->
+                                            <div class="row q-margin">
+
+                                                <!-- Serial No -->
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label class="custom-label-black">Serial No:</label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <span class="custom-label">
+                                                                {{ (element &&
+                                                                element.serialNo) ?
+                                                                (element.serialNo) :
+                                                                ("NA")
+                                                                }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- QR Code -->
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label class="custom-label-black">QR Code:</label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <span class="custom-label">
+                                                                {{ (element &&
+                                                                element.qrCode) ?
+                                                                (element.qrCode) :
+                                                                ("NA")
+                                                                }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- SMS Code -->
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label class="custom-label-black">SMS Code:</label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <span class="custom-label">
+                                                                {{ (element &&
+                                                                element.smsCode) ?
+                                                                (element.smsCode) :
+                                                                ("NA")
+                                                                }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- Inner Data Row 3 Div End -->
 
                                             <!-- PO Request Header -->
                                             <div class="row full-margin">
@@ -398,7 +552,7 @@
                                                 </div>
 
                                                 <!-- priceOfLabel -->
-                                                <div class="col-md-3">
+                                                <div class="col-md-3" *ngIf="false">
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <label class="custom-label-black">Price per Label:</label>

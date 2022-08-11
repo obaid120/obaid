@@ -72,10 +72,10 @@ export class DashboardSummary {
 
 export class SummaryParams {
     scanResult: string;
-    startDate: string;
-    endDate: string;
-    batchId: string;
-    recordNo: string;
+    startDate: Date = null;
+    endDate: Date = null;
+    keyword: string;
+    scanType: string;
 }
 
 export class ScanData {
