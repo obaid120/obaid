@@ -67,7 +67,7 @@ import { UserModule } from "../../models/user-module.model";
 import { Organization } from "../../models/organization.model";
 import { UtilityService } from "../utility/utility.service";
 import { LogService } from "../log/log.service";
-import { ChevronSerial, DashboardListInnerItems, DashboardSummary, PORequest } from "../../models/atk.model";
+import { ChevronSerial, DashboardListInnerItems, DashboardSummary, PORequest, ScanData } from "../../models/atk.model";
 import { environment } from "src/environments/environment";
 
 declare function unescape(s: string): string;
@@ -1451,6 +1451,7 @@ export class MappingService {
       isMapData.scanDate = resData.scanDate || null;
       isMapData.productId = resData.productId || null;
       isMapData.batchId = resData.batchId || null;
+      isMapData.batchId = isMapData.batchId ? isMapData.batchId.trim() : ""; 
       isMapData.lineId = resData.lineId || null;
       isMapData.productName = resData.productName || null;
       isMapData.scanLoc = resData.latitude != null && resData.longitude != null ?
@@ -1458,10 +1459,14 @@ export class MappingService {
       isMapData.scanLocation = resData.latitude != null && resData.longitude != null ?
         `https://maps.google.com/?q=${resData.latitude},${resData.longitude}` : null;
 
-      if (isMapData.scanDate != null) {
-        const date = new Date(isMapData.scanDate);
+      if (isMapData.scannedOn != null) {
+        console.log("isMapData.scannedOn", isMapData.scannedOn);
+        let date = new Date(isMapData.scannedOn);
+        console.log("date", date);
         date.setHours(date.getHours() + 5);
-        isMapData.scanDate = date.toISOString();
+        console.log("date", date);
+        isMapData.scannedOn = date.toString();
+        console.log("isMapData.scannedOn", isMapData.scannedOn);
       }
     }
     return isMapData;
