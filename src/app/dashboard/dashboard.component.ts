@@ -357,7 +357,7 @@ export class DashboardComponent implements OnInit {
     this.loadScanInfoSummaryList();
   }
   async downloadCsv(){
-    this.applyFilters();
+    // this.applyFilters();
     this.exportTableData(this.dataSource.data);
     
   }
@@ -387,7 +387,7 @@ export class DashboardComponent implements OnInit {
         }
 
         exportDate.push(tempData);
-        console.log(tempData)
+        // console.log(tempData)
 
       });
 
