@@ -1,5 +1,5 @@
 .mat-card-custom {
-  border-radius: 0px;
+  border-radius: 0  px;
 } 
 
 .card-custom {
@@ -145,8 +145,15 @@
 
 /* // Table Styling below */
 
+.table-div {
+  margin: 0 auto; 
+  margin-top: 100px;
+  overflow: auto;
+}
+
 table {
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .table-responsive {
