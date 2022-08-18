@@ -7,6 +7,7 @@ import { DashboardListInnerItems, DashboardSummary, ScanData, Status, SummaryPar
 import { Message, MessageTypes } from '../core/models/message.model';
 import { ATKService } from '../core/services/atk/atk.service';
 import { AuthService } from '../core/services/auth/auth.service';
+import { DownloadService } from '../core/services/download/download.service';
 import { LogService } from '../core/services/log/log.service';
 import { MappingService } from '../core/services/mapping/mapping.service';
 import { UIService } from '../core/services/ui/ui.service';
@@ -106,7 +107,8 @@ export class DashboardComponent implements OnInit {
     private _mappingService: MappingService,
     private _authService: AuthService,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    private download : DownloadService
   ) { }
 
   ngOnInit(): void {
@@ -354,5 +356,54 @@ export class DashboardComponent implements OnInit {
 
     this.loadScanInfoSummaryList();
   }
+  async downloadCsv(){
+    this.applyFilters();
+    this.exportTableData(this.dataSource.data);
+    
+  }
+  exportTableData(data:any){
+    
+    let exportDate = [{}];
 
+    if (data && data.length > 0) {
+
+      data.forEach((row, index) => {
+        // return formatted;
+
+        let tempData = {
+          "S.No": (index + 1) || "NA",
+          'Product Name': row.productName || "NA",
+          'Batch No': row.batchId || "NA",
+          'Location': row.scanLocation || "NA",
+          'Date / Time (24 Hr)': row.scanData || "NA",
+          'Mobile No': row.mobileNo || "NA",
+          'Status': row.scanResult || "NA",
+          'Scanned / Verified Via': row.scanMethod || "NA",
+          
+
+          // 'Department': element.departmentName || "NA",
+          // 'Role': element.rolesName || "NA",
+
+        }
+
+        exportDate.push(tempData);
+        console.log(tempData)
+
+      });
+
+      this.download.exportAsExcelFile(exportDate, 'Report');
+      // this._excelService.exportAsExcelFile(this.reports, 'SAMPLE');
+    }
+    // else {
+    //   msg.msg = 'No Reports Found';
+    //   msg.msgType = MessageTypes.Information;
+    //   msg.autoCloseAfter = 400;
+    //   this._uiService.showToast(msg, 'info');
+
+    // }
+
+  
+  }
 }
+
+

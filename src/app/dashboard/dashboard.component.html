@@ -601,11 +601,13 @@
                             </div>
                         </div>
                         <spinner [visible]='isSpinner'></spinner>
-
+                        <button mat-raised-button color="primary" (click)="downloadCsv()">DownloadXlxs</button>
                         <mat-paginator style="margin-bottom: 100px;" #paginator [length]="length"
                             [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
                             (page)="pageEvent = pageChangeEvent($event)" [showFirstLastButtons]="true">
+                            
                         </mat-paginator>
+                        
                     </div>
                 </mat-card>
             </mat-card-content>
