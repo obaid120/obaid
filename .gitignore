@@ -109,3 +109,4 @@ dist
 *.old
 *.old
 src/environments/environment.ts
+*.old

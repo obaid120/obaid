@@ -398,8 +398,8 @@ export class AuthService {
 
   fakeIsLoggedIn() : boolean {
     let check = localStorage.getItem('verify');
-    this._logService.logMessage("checkHereer");
-    this._logService.logMessage(check);
+    // this._logService.logMessage("checkHereer");
+    // this._logService.logMessage(check);
     return this._util.isStringMatched(check, ['foobarfoo'], true);
   }
 

@@ -1460,13 +1460,9 @@ export class MappingService {
         `https://maps.google.com/?q=${resData.latitude},${resData.longitude}` : null;
 
       if (isMapData.scannedOn != null) {
-        console.log("isMapData.scannedOn", isMapData.scannedOn);
         let date = new Date(isMapData.scannedOn);
-        console.log("date", date);
         date.setHours(date.getHours() + 5);
-        console.log("date", date);
         isMapData.scannedOn = date.toString();
-        console.log("isMapData.scannedOn", isMapData.scannedOn);
       }
     }
     return isMapData;

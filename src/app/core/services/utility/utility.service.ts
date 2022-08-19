@@ -976,8 +976,8 @@ export class UtilityService {
         }
       });
 
-      this._logService.logMessage("check ");
-      this._logService.logMessage(check);
+      // this._logService.logMessage("check ");
+      // this._logService.logMessage(check);
 
       return check > 0 ? true : false;
     } else {

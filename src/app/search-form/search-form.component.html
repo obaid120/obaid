@@ -36,8 +36,12 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <div class="col-md-2 side-margin padding-cust">
-                            <button mat-raised-button class="custom-button" color="primary"
+                        
+                        <div class="col-md-2 side-margin ">
+                            <div class="label-div">
+                                <mat-label class="custom-label">Click</mat-label>
+                            </div>
+                            <button mat-raised-button class="custom-button margin-custom" color="primary"
                                 [disabled]="this.keyword && this.codeType ? false : true" (click)="search()">
                                 Search
                             </button>

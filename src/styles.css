@@ -185,3 +185,23 @@ body {
 .small-font {
     font-size: 12px !important;
 }
+
+.custom-button {
+    transform: scale(1.1) !important;
+    margin: 3px 10px 10px 0px !important;
+    width: auto;
+    height: 40px;
+    align-self: center;
+    background-color: #004c5f !important;
+    color: #ffffff !important;
+}
+
+.custom-button:disabled {
+    transform: scale(1.1) !important;
+    margin: 3px 10px 10px 0px !important;
+    width: auto;
+    height: 40px;
+    align-self: center;
+    background-color: #e8e8e8 !important;
+    color: #004c5f !important;
+}

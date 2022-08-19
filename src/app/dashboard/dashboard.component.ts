@@ -116,8 +116,8 @@ export class DashboardComponent implements OnInit {
     this.loadScanSummary();
     this.applyFilters();
     let item = localStorage.getItem('dash');
-    this._logService.logMessage("dashitem");
-    this._logService.logMessage(item);
+    // this._logService.logMessage("dashitem");
+    // this._logService.logMessage(item);
     if (item != null) {
       localStorage.removeItem('dash');
       location.reload();
@@ -161,8 +161,8 @@ export class DashboardComponent implements OnInit {
           let res1: any = await this._atkService.getAllSerialScanSummaryPageWise(this.pageIndex, this.pageSize, this.params);
 
           this.isSpinner = false;
-          this._logService.logMessage("success res:-------");
-          this._logService.logResponse(res1);
+          // this._logService.logMessage("success res:-------");
+          // this._logService.logResponse(res1);
           let array = res1 || [];
 
           var oList: DashboardSummary[] = [];
@@ -178,8 +178,8 @@ export class DashboardComponent implements OnInit {
             this.lastScanSummaryList
           );
 
-          this._logService.logMessage("success res: ");
-          this._logService.logResponse(this.lastScanSummaryList);
+          // this._logService.logMessage("success res: ");
+          // this._logService.logResponse(this.lastScanSummaryList);
 
 
           if (this.lastScanSummaryList.length == 0) {
@@ -276,8 +276,8 @@ export class DashboardComponent implements OnInit {
   async loadScanSummary() {
     this.isCardSpinner = true;
     let res: any = await this._atkService.getScans();
-    this._logService.logMessage("CustomScans");
-    this._logService.logMessage(res.data);
+    // this._logService.logMessage("CustomScans");
+    // this._logService.logMessage(res.data);
     this.isCardSpinner = false;
     if (res.data) {
       this.goodScans = res.data.goodScans;
@@ -359,7 +359,7 @@ export class DashboardComponent implements OnInit {
   async downloadCsv(){
     // this.applyFilters();
     this.exportTableData(this.dataSource.data);
-    
+
   }
   exportTableData(data:any){
     

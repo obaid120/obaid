@@ -15,11 +15,11 @@ export const environment = {
 
    authBaseUrl : "",
    authRevokeUrl : "",
-   // apiBaseUrl : "http://localhost:5001/api/",
-   // hubConnection : "http://localhost:5001/",
+   apiBaseUrl : "http://localhost:5001/api/",
+   hubConnection : "http://localhost:5001/",
 
-   apiBaseUrl : "https://apichevron.atksrv.net/portalapi/api/",
-   hubConnection : "https://apichevron.atksrv.net/portalapi/",
+   // apiBaseUrl : "https://apichevron.atksrv.net/portalapi/api/",
+   // hubConnection : "https://apichevron.atksrv.net/portalapi/",
 
    // apiBaseUrl : "http://18.142.220.9/api/", // Linux environment
    // hubConnection : "http://18.142.220.9/",
