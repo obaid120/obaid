@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build --configuration production --base-href /chevron-portal/login/",
+    "build:dev": "node --max_old_space_size=8048 ./node_modules/@angular/cli/bin/ng build --configuration=dev --configuration production --build-optimizer --aot --base-href /chevron-portal/login/ ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
