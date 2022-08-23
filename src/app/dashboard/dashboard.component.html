@@ -158,7 +158,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-3 top-pad side-margin  padding-cust">
+                                <div class="col-sm-4 top-pad side-margin  padding-cust" style="display: flex;">
+                                    
+                                <div    class="col-sm-4" >
                                     <label class="custom-label-black small-font">Click to Search</label>
                                     <br>
                                     <button mat-raised-button class="custom-button" color="primary"
@@ -166,6 +168,20 @@
                                         Search
                                     </button>
                                 </div>
+                                <div class="col-sm-4" style="width: 30%;">
+                                    <label class="custom-label-black small-font">Download</label>
+                                    <br>
+                                    <button mat-raised-button color="primary" class="custom-button" 
+                                     
+                                    (click)="downloadCsv()">Download CSV</button>
+                                </div>
+                                    
+
+                                    
+                                </div>
+                                
+                                
+
                             </div>
 
                         </div>
@@ -600,7 +616,7 @@
                             </div>
                         </div>
                         <spinner [visible]='isSpinner'></spinner>
-                        <button mat-raised-button color="primary" (click)="downloadCsv()">DownloadXlxs</button>
+                        
                         <mat-paginator style="margin-bottom: 100px;" #paginator [length]="length"
                             [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
                             (page)="pageEvent = pageChangeEvent($event)" [showFirstLastButtons]="true">

@@ -341,7 +341,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  applyFilters() {
+  async applyFilters() {
     this.params = new SummaryParams();
     if (this.statusFilterObj != null) {
       this.params.scanResult = this.statusFilterObj;
@@ -356,9 +356,25 @@ export class DashboardComponent implements OnInit {
 
     this.loadScanInfoSummaryList();
   }
+  
+  
   async downloadCsv(){
-    // this.applyFilters();
+    
+    // let res:any = await this.applyFilters();
+    
     this.exportTableData(this.dataSource.data);
+
+    // if(res){
+    //   this.exportTableData(this.dataSource.data);
+    // }
+
+    
+
+    
+    
+    
+    
+    
 
   }
   exportTableData(data:any){
@@ -375,7 +391,7 @@ export class DashboardComponent implements OnInit {
           'Product Name': row.productName || "NA",
           'Batch No': row.batchId || "NA",
           'Location': row.scanLocation || "NA",
-          'Date / Time (24 Hr)': row.scanData || "NA",
+          'Date / Time (24 Hr)': row.scannedOn || "NA",
           'Mobile No': row.mobileNo || "NA",
           'Status': row.scanResult || "NA",
           'Scanned / Verified Via': row.scanMethod || "NA",
