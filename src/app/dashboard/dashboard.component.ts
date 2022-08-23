@@ -375,7 +375,7 @@ export class DashboardComponent implements OnInit {
           'Product Name': row.productName || "NA",
           'Batch No': row.batchId || "NA",
           'Location': row.scanLocation || "NA",
-          'Date / Time (24 Hr)': row.scanData || "NA",
+          'Date / Time (24 Hr)': row.scanDate || "NA",
           'Mobile No': row.mobileNo || "NA",
           'Status': row.scanResult || "NA",
           'Scanned / Verified Via': row.scanMethod || "NA",
