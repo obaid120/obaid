@@ -99,6 +99,7 @@ export class DashboardComponent implements OnInit {
   startDate: any = null;
   endDate: any = null;
   keyword: string = null;
+  datas: [];
 
   constructor(
     private _atkService: ATKService,
@@ -122,6 +123,29 @@ export class DashboardComponent implements OnInit {
       localStorage.removeItem('dash');
       location.reload();
     }
+   
+    // const data = JSON.parse(sessionStorage.getItem("datas"));
+    const data = localStorage.getItem("datas");
+    if(data !==null){
+      
+      this.datas = JSON.parse(data);
+
+      this.loadScanInfoSummaryList();
+      this.loadScanSummary();
+      this.applyFilters();
+   
+    // console.log('here',data);
+  }
+  
+
+
+
+
+    // let data =  localStorage.getItem('data');
+
+    // this.dataSource.data= JSON.parse(localStorage.getItem('data'));
+
+
   }
 
   ngAfterViewChecked() {
@@ -204,7 +228,13 @@ export class DashboardComponent implements OnInit {
           this._uiService.showToast(msg, 'info');
         }
       }
+      // sessionStorage.setItem('datas', JSON.stringify(this.dataSource.data));
+      localStorage.setItem('datas', JSON.stringify(this.dataSource.data));
     }
+    
+    
+    
+   
   }
 
   // async loadScanInfoSummaryList() {
@@ -344,8 +374,10 @@ export class DashboardComponent implements OnInit {
   async applyFilters() {
     this.params = new SummaryParams();
     if (this.statusFilterObj != null) {
+      
       this.params.scanResult = this.statusFilterObj;
     } if (this.scanTypeFilterObj != null) {
+      localStorage.setItem("scantype",  this.scanTypeFilterObj);
       this.params.scanType = this.scanTypeFilterObj;
     } if (this.startDate && this.endDate) {
       this.params.startDate = this.startDate;
@@ -354,7 +386,31 @@ export class DashboardComponent implements OnInit {
       this.params.keyword = this.keyword
     }
 
+    if( localStorage.getItem("scantype") != null &&  (this.scanTypeFilterObj == null)){
+
+       
+      this.params.scanType = localStorage.getItem("scantype");
+
+
+   }
+
+   
+   
+
+
+   
+
+    // localStorage.setItem('datas', JSON.stringify(this.dataSource.data));
+    // console.log( this.params.scanType);
     this.loadScanInfoSummaryList();
+    // localStorage.setItem('dataSource', this.dataSource);
+    // lastScanSummaryList
+    // localStorage.setItem('datas', JSON.stringify(this.dataSource.data));
+    // localStorage.setItem('data',this.dataSource);
+    
+    
+
+    
   }
   
   
