@@ -246,6 +246,12 @@ export class DashboardComponent implements OnInit {
    
   }
 
+  checkMinimumDateTime(date: string): Boolean {
+    this._logService.logMessage('date')
+    this._logService.logMessage(date.toString() == '0001-01-01T00:00:00')
+    return date.toString() == '0001-01-01T00:00:00';
+  }
+
   // async loadScanInfoSummaryList() {
   //   const msg = new Message();
   //   let params = new SummaryParams();
@@ -510,6 +516,7 @@ export class DashboardComponent implements OnInit {
 
   
   }
+
 }
 
 

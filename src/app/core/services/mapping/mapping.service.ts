@@ -1459,7 +1459,7 @@ export class MappingService {
       isMapData.scanLocation = resData.latitude != null && resData.longitude != null ?
         `https://maps.google.com/?q=${resData.latitude},${resData.longitude}` : null;
 
-      if (isMapData.scannedOn != null) {
+      if (isMapData.scannedOn != null && isMapData.scannedOn != '0001-01-01T00:00:00') {
         let date = new Date(isMapData.scannedOn);
         date.setHours(date.getHours() + 5);
         isMapData.scannedOn = date.toString();
