@@ -125,17 +125,26 @@ export class DashboardComponent implements OnInit {
     }
    
     // const data = JSON.parse(sessionStorage.getItem("datas"));
-    const data = localStorage.getItem("datas");
+    const data = sessionStorage.getItem("datas");
     if(data !==null){
       
       this.datas = JSON.parse(data);
 
-      this.loadScanInfoSummaryList();
-      this.loadScanSummary();
-      this.applyFilters();
+      
    
     // console.log('here',data);
   }
+  window.sessionStorage.removeItem("datas");
+  window.sessionStorage.removeItem("scantype");
+  window.sessionStorage.removeItem("status");
+
+  window.sessionStorage.removeItem("from");
+  window.sessionStorage.removeItem("end");
+
+
+
+  // window.sessionStorage.removeItem("datas");
+
   
 
 
@@ -229,7 +238,7 @@ export class DashboardComponent implements OnInit {
         }
       }
       // sessionStorage.setItem('datas', JSON.stringify(this.dataSource.data));
-      localStorage.setItem('datas', JSON.stringify(this.dataSource.data));
+      sessionStorage.setItem('datas', JSON.stringify(this.dataSource.data));
     }
     
     
@@ -374,25 +383,53 @@ export class DashboardComponent implements OnInit {
   async applyFilters() {
     this.params = new SummaryParams();
     if (this.statusFilterObj != null) {
-      
+      sessionStorage.setItem("status",  this.statusFilterObj);
       this.params.scanResult = this.statusFilterObj;
     } if (this.scanTypeFilterObj != null) {
-      localStorage.setItem("scantype",  this.scanTypeFilterObj);
+      sessionStorage.setItem("scantype",  this.scanTypeFilterObj);
       this.params.scanType = this.scanTypeFilterObj;
     } if (this.startDate && this.endDate) {
+      sessionStorage.setItem("from" ,this.startDate);
       this.params.startDate = this.startDate;
+      sessionStorage.setItem("end" ,this.endDate);
       this.params.endDate = this.endDate;
     } if (this.keyword) {
       this.params.keyword = this.keyword
     }
 
-    if( localStorage.getItem("scantype") != null &&  (this.scanTypeFilterObj == null)){
+    if( sessionStorage.getItem("scantype") != null &&  (this.scanTypeFilterObj == null)){
 
        
-      this.params.scanType = localStorage.getItem("scantype");
+      this.params.scanType = sessionStorage.getItem("scantype");
+      this.scanTypeFilterObj = sessionStorage.getItem("scantype");
+      
+      
 
 
    }
+   if( sessionStorage.getItem("status") != null &&  (this.statusFilterObj == null)){
+
+       
+    this.params.scanResult = sessionStorage.getItem("status");
+    this.statusFilterObj = sessionStorage.getItem("status");
+
+
+ }
+ if( sessionStorage.getItem("from") != null &&  (this.startDate == null)){
+
+       
+  this.params.scanResult = sessionStorage.getItem("from");
+  this.startDate = sessionStorage.getItem("from");
+
+
+}if( sessionStorage.getItem("end") != null &&  (this.endDate == null)){
+
+       
+  this.params.scanResult = sessionStorage.getItem("end");
+  this.endDate = sessionStorage.getItem("end");
+
+
+}
 
    
    
@@ -400,18 +437,15 @@ export class DashboardComponent implements OnInit {
 
    
 
-    // localStorage.setItem('datas', JSON.stringify(this.dataSource.data));
-    // console.log( this.params.scanType);
     this.loadScanInfoSummaryList();
-    // localStorage.setItem('dataSource', this.dataSource);
-    // lastScanSummaryList
-    // localStorage.setItem('datas', JSON.stringify(this.dataSource.data));
-    // localStorage.setItem('data',this.dataSource);
+    
     
     
 
     
   }
+  
+ 
   
   
   async downloadCsv(){
