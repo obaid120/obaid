@@ -134,12 +134,12 @@ export class DashboardComponent implements OnInit {
    
     // console.log('here',data);
   }
-  window.sessionStorage.removeItem("datas");
-  window.sessionStorage.removeItem("scantype");
-  window.sessionStorage.removeItem("status");
+  // window.sessionStorage.removeItem("datas");
+  // window.sessionStorage.removeItem("scantype");
+  // window.sessionStorage.removeItem("status");
 
-  window.sessionStorage.removeItem("from");
-  window.sessionStorage.removeItem("end");
+  // window.sessionStorage.removeItem("from");
+  // window.sessionStorage.removeItem("end");
 
 
 
@@ -395,9 +395,9 @@ export class DashboardComponent implements OnInit {
       sessionStorage.setItem("scantype",  this.scanTypeFilterObj);
       this.params.scanType = this.scanTypeFilterObj;
     } if (this.startDate && this.endDate) {
-      sessionStorage.setItem("from" ,this.startDate);
+      sessionStorage.setItem("from" , JSON.stringify(this.startDate));
       this.params.startDate = this.startDate;
-      sessionStorage.setItem("end" ,this.endDate);
+      sessionStorage.setItem("end" ,JSON.stringify(this.endDate));
       this.params.endDate = this.endDate;
     } if (this.keyword) {
       this.params.keyword = this.keyword
@@ -424,15 +424,15 @@ export class DashboardComponent implements OnInit {
  if( sessionStorage.getItem("from") != null &&  (this.startDate == null)){
 
        
-  this.params.scanResult = sessionStorage.getItem("from");
-  this.startDate = sessionStorage.getItem("from");
+  this.params.startDate = JSON.parse(sessionStorage.getItem("from"));
+  this.startDate = JSON.parse(sessionStorage.getItem("from"));
 
 
 }if( sessionStorage.getItem("end") != null &&  (this.endDate == null)){
 
        
-  this.params.scanResult = sessionStorage.getItem("end");
-  this.endDate = sessionStorage.getItem("end");
+  this.params.endDate = JSON.parse(sessionStorage.getItem("end"));
+  this.endDate = JSON.parse(sessionStorage.getItem("end"));
 
 
 }
